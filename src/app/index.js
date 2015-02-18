@@ -3,10 +3,15 @@
 angular.module('lolqueen', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap'])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('home', {
+      .state('landing', {
         url: '/',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'app/landing/landing.html',
+        controller: 'LandingCtrl'
+      })
+      .state('home', {
+      	url: '/home',
+      	templateUrl: 'app/home/home.html',
+      	controller: 'HomeCtrl'
       });
 
     $urlRouterProvider.otherwise('/');
