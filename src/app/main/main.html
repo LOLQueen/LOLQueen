@@ -1,0 +1,14 @@
+<div class="container">
+  <form>
+    <input type="text" ng-model="summoner.name">
+    <button type="button" ng-click="getSummoner(summoner)">
+      Fetch Summoner!
+    </button>
+  </form>
+
+  <ul>
+    <li ng-repeat="s in summoners">
+      {{s.name}}
+    </li>
+  </ul>
+</div>
