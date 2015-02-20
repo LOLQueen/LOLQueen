@@ -8,10 +8,10 @@ angular.module('lolqueen', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', '
         templateUrl: 'app/landing/landing.html',
         controller: 'LandingCtrl'
       })
-      .state('home', {
-      	url: '/home',
-      	templateUrl: 'app/home/home.html',
-      	controller: 'HomeCtrl'
+      .state('summoner', {
+      	url: '/summoner/:region/:summonerName',
+      	templateUrl: 'app/summoner/summoner.html',
+      	controller: 'SummonerCtrl'
       });
 
     $urlRouterProvider.otherwise('/');
