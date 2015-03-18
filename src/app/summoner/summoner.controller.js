@@ -16,7 +16,7 @@ angular.module('lolqueen')
   			return RecentMatches.find({summonerId: summoner.id}).$promise;
   		})
   		.then(function(recentMatches){
-  			$scope.recentMatches = recentMatches;
+  			$scope.recentMatches = recentMatches.games;
   			return recentMatches;
   		})
   		.catch(function(error){
