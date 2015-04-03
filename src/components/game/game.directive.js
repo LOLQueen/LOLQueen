@@ -3,9 +3,9 @@
 angular.module('lolqueen')
   .directive('lqGame', lqGame);
 
-lqGame.$inject = [];
+lqGame.$inject = ['Champion'];
 
-function lqGame(){
+function lqGame(Champion){
   return {
     templateUrl: 'components/game/game.html',
     scope: {
@@ -19,8 +19,6 @@ function lqGame(){
       scope.playedAgo = (Date.now() - game.matchCreation) / (1000) ;
       scope.queueType = game.queueType;
       scope.summonerSpells = [player.spell1Id, player.spell2Id];
-      scope.championId = player.championId;
-      scope.champLevel = player.stats.champLevel;
       scope.kda = {
         kills: player.stats.kills, 
         deaths: player.stats.deaths, 
@@ -37,7 +35,20 @@ function lqGame(){
         player.stats.item5
       ];
 
-      scope.items = scope.items.filter(function(item){ return item; })
+      scope.champion = {
+        id: player.championId,
+        level: player.stats.champLevel
+      };
+
+      scope.items = scope.items.filter(function(item){ return item; });
+
+      // get chamption name from api
+      Champion.findOne({championId: scope.champion.id})
+        .$promise
+        .then(function(resource){
+          scope.champion.name = resource.name;
+        });
+
 
       scope.trinket = player.stats.item6;
 
