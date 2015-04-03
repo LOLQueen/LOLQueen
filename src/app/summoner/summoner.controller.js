@@ -5,19 +5,31 @@ angular.module('lolqueen')
   	'$scope', 
   	'$stateParams',
   	'Summoner', 
-  	'RecentMatches', 
-  	function ($scope, $stateParams, Summoner, RecentMatches) {
+  	'MatchHistory', 
+  	'Match',
+  	function ($scope, $stateParams, Summoner, MatchHistory, Match) {
 
   	$scope.summonerName = $stateParams.summonerName;
 
   	Summoner.findOne({summonerName: $scope.summonerName}).$promise
   		.then(function(summoner) {
   			$scope.summoner = summoner;
-  			return RecentMatches.find({summonerId: summoner.id}).$promise;
+  			return MatchHistory.find({summonerId: summoner.id}).$promise;
   		})
   		.then(function(recentMatches){
-  			$scope.recentMatches = recentMatches.games;
-  			return recentMatches;
+  			$scope.recentMatches = recentMatches.map(function(match){
+              var id = match.matchId;
+
+              Match.findOne({matchId: id})
+                .$promise
+                .then(function(resource){
+                  match.data = resource;
+                });
+
+              return match;
+            });
+
+            console.log($scope.recentMatches)
   		})
   		.catch(function(error){
   			console.log(error);

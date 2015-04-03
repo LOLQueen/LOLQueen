@@ -1,21 +1,22 @@
 'use strict';
 
+// This pretty much returns the MatchHistory for a particular 'summoner'
+// From here on we grab the "matchID" and ask the 'match' endpoint for the game data
+
 angular.module('lolqueen')
-  .factory('RecentMatches', ['$resource', function ($resource) {
+  .factory('Match', ['$resource', function ($resource) {
     // Public API here
     return $resource(
-      'http://localhost:9000/api/lol/:region/v1.3/game/by-summoner/:summonerId/recent', 
+      'http://localhost:9000/api/lol/:region/v2.2/match/:matchId', 
       {
         region: 'na'
       }, 
       {
-        'find': { 
+        'findOne': { 
           method:'GET',
           isArray: false, 
           responseType: 'json',
           transformResponse: function(data){
-            //var name = Object.keys(data)[0];
-            //return data[name];
             return data;
           }
         }
