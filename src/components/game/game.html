@@ -5,7 +5,7 @@
 	</div>
 	<div class="panel-body">
 		<div class="row">
-			<div class="col-xs-4">
+			<div class="col-xs-3">
 				<div class="row">
 					<div class="col-xs-4">
 						<div ng-repeat="spell in summonerSpells">
@@ -16,7 +16,8 @@
 						<figure>
 							<img src="http://localhost:9000/assets/dragon/img/champion/{{champion.name}}.png" class="img-thumbnail" alt="...">
 							<figcaption>
-								{{champion.level}}
+								<span>{{champion.level}}</span> - 
+								<span>{{champion.name}}</span>
 							</figcaption>
 						</figure>
 					</div>
@@ -40,7 +41,7 @@
 				</div>
 
 			</div>
-			<div class="col-xs-4">
+			<div class="col-xs-5">
 				<div class="row">
 					<div class="col-xs-9">
 						<div class="row">
@@ -50,7 +51,7 @@
 						</div>
 					</div>
 					<div class="col-xs-3">
-						<img src="http://localhost:9000/assets/dragon/img/item/{{trinket}}.png">
+						<img src="http://localhost:9000/assets/dragon/img/item/{{trinket}}.png" class="img-thumbnail" alt="item">
 					</div>
 				</div>
 			</div>
