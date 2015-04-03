@@ -5,7 +5,7 @@
 	<h1> {{summonerName}} </h1>
 
   <ul class="list-unstyled">
-    <li ng-repeat="game in recentMatches">
+    <li ng-repeat="game in recentMatches.slice().reverse()">
     	<lq-game game="game"></lq-game>
     </li>
   </ul>

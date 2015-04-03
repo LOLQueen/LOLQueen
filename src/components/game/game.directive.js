@@ -16,12 +16,16 @@ function lqGame(){
       var player = game.participants[0];
       scope.won = player.stats.winner;
       scope.gameLength = game.matchDuration;
-      scope.playedAgo = (Date.now() - game.matchCreation) / 1000;
+      scope.playedAgo = (Date.now() - game.matchCreation) / (1000) ;
       scope.queueType = game.queueType;
       scope.summonerSpells = [player.spell1Id, player.spell2Id];
       scope.championId = player.championId;
-      scope.kda = {kills: player.stats.kills, deaths: player.stats.deaths, assists: player.stats.assists};
       scope.champLevel = player.stats.champLevel;
+      scope.kda = {
+        kills: player.stats.kills, 
+        deaths: player.stats.deaths, 
+        assists: player.stats.assists
+      };
       scope.goldEarned = player.stats.goldEarned;
       scope.items = [
         player.stats.item0,

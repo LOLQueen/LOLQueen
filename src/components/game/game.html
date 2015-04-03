@@ -1,6 +1,50 @@
 <div class="panel panel-default" ng-class="{'panel-success': won, 'panel-danger': !won}">
-	<div class="panel-heading"> {{queueType}} - {{gameLength}} </div>
+	<div class="panel-heading"> 
+		<span class="pull-right">{{playedAgo}}</span>
+		<span>{{queueType}} - {{gameLength}}<span>
+	</div>
 	<div class="panel-body">
-		
+		<div class="row">
+			<div class="col-xs-4">
+				<div class="row">
+					<div class="col-xs-4">
+						<div ng-repeat="spell in summonerSpells">
+							{{spell}}
+						</div>
+					</div>
+					<div class="col-xs-8">
+						<figure>
+							<img src="http://placehold.it/75x75" class="img-thumbnail">
+							<figcaption>
+								{{champLevel}}
+							</figcaption>
+						</figure>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-4">
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="row">
+							<div class="col-xs-12">
+								{{kda.kills}} / {{kda.deaths}} / {{kda.assists}}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12"> {{(kda.kills + kda.assists)/ kda.deaths}} : 1</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						{{goldEarned}} 
+					</div>
+				</div>
+
+			</div>
+			<div class="col-xs-4">
+				<div class="row">
+					<div class="col-xs-4" ng-repeat="item in items">{{item}}</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
