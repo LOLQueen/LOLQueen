@@ -27,6 +27,7 @@ function lqGame(){
         assists: player.stats.assists
       };
       scope.goldEarned = player.stats.goldEarned;
+      
       scope.items = [
         player.stats.item0,
         player.stats.item1,
@@ -35,6 +36,10 @@ function lqGame(){
         player.stats.item4,
         player.stats.item5
       ];
+
+      scope.items = scope.items.filter(function(item){ return item; })
+
+      scope.trinket = player.stats.item6;
 
       console.log(scope);
     }
