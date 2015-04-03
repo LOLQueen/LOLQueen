@@ -14,7 +14,7 @@ function lqGame(){
     link: function(scope, element, attr) {
       var game = scope.game;
       var player = game.participants[0];
-      scope.winner = player.stats.winner;
+      scope.won = player.stats.winner;
       scope.gameLength = game.matchDuration;
       scope.playedAgo = (Date.now() - game.matchCreation) / 1000;
       scope.queueType = game.queueType;
