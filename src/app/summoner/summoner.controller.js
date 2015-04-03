@@ -14,6 +14,7 @@ angular.module('lolqueen')
   	Summoner.findOne({summonerName: $scope.summonerName}).$promise
   		.then(function(summoner) {
   			$scope.summoner = summoner;
+  			$scope.summonerName = summoner.name;
   			return MatchHistory.find({summonerId: summoner.id}).$promise;
   		})
   		.then(function(recentMatches){
@@ -29,7 +30,6 @@ angular.module('lolqueen')
               return match;
             });
 
-            console.log($scope.recentMatches)
   		})
   		.catch(function(error){
   			console.log(error);
