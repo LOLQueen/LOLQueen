@@ -64,6 +64,10 @@
 
 	}
 
+	.panel-body {
+		height: $champion-size + 5rem;
+	}
+
 	.item {
 		@include image-icon($item-size);
 		cursor: pointer;
