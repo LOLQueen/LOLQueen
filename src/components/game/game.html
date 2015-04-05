@@ -1,60 +1,45 @@
-<div class="panel panel-default" ng-class="{'panel-success': won, 'panel-danger': !won}">
-	<div class="panel-heading"> 
-		<span class="pull-right">{{playedAgo}}</span>
-		<span>{{queueType}} - {{gameLength}}<span>
-	</div>
-	<div class="panel-body">
-		<div class="row">
-			<div class="col-xs-3">
-				<div class="row">
-					<div class="col-xs-4">
-						<div ng-repeat="spell in summonerSpells">
-							<img src="http://localhost:9000/assets/dragon/img/spell/{{'Summoner' + spell.name}}.png" alt="{{spell.name}}" class="img-thumbnail">
-						</div>
-					</div>
-					<div class="col-xs-8">
-						<figure>
-							<img src="http://localhost:9000/assets/dragon/img/champion/{{champion.name}}.png" class="img-thumbnail" alt="...">
-							<figcaption>
-								<span>{{champion.level}}</span> - 
-								<span>{{champion.name}}</span>
-							</figcaption>
-						</figure>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-4">
-				<div class="row">
-					<div class="col-xs-6">
-						<div class="row">
-							<div class="col-xs-12">
-								{{kda.kills}} / {{kda.deaths}} / {{kda.assists}}
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-12"> {{(kda.kills + kda.assists)/ kda.deaths}} : 1</div>
-						</div>
-					</div>
-					<div class="col-xs-6">
-						{{goldEarned}} 
-					</div>
-				</div>
+<div data-directive="game-card">
 
-			</div>
-			<div class="col-xs-5">
-				<div class="row">
-					<div class="col-xs-9">
-						<div class="row">
-							<div class="col-xs-4" ng-repeat="item in items track by $index">
-								<img src="http://localhost:9000/assets/dragon/img/item/{{item}}.png" class="img-thumbnail" alt="item">
-							</div>
-						</div>
-					</div>
-					<div class="col-xs-3">
-						<img src="http://localhost:9000/assets/dragon/img/item/{{trinket}}.png" class="img-thumbnail" alt="item">
-					</div>
+	<div class="panel panel-default" ng-class="{'panel-success': won, 'panel-danger': !won}">
+		<div class="panel-heading"> 
+			<span class="pull-right">{{playedAgo}}</span>
+			<span>{{queueType}} - {{gameLength}}<span>
+		</div>
+		<div class="panel-body">
+
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="spells clearfix">
+						<img ng-repeat="spell in summonerSpells" src="http://localhost:9000/assets/dragon/img/spell/{{'Summoner' + spell.name}}.png" alt="{{spell.name}}" class="summoner-spell">
+						
+					</div>	
+					<figure>
+						<img src="http://localhost:9000/assets/dragon/img/champion/{{champion.name}}.png" class="champion" alt="...">
+						<figcaption>
+							<span>{{champion.level}}</span> - 
+							<span>{{champion.name}}</span>
+						</figcaption>
+					</figure>
+
+					<span class="stats">
+						{{kda.kills}} / {{kda.deaths}} / {{kda.assists}}
+						{{goldEarned}} 
+					</span>
+					<div class="items">
+						
+						<img ng-repeat="item in items track by $index" src="http://localhost:9000/assets/dragon/img/item/{{item}}.png" class="item" alt="item">
+						
+						<img src="http://localhost:9000/assets/dragon/img/item/{{trinket}}.png" class="trinket item" alt="item">
+							
+					</div>	
 				</div>
 			</div>
+		</div>
+		<div class="panel-body">
+			<a href="#" class="btn btn-default btn-block">Block level button</a>
+		</div>
+		<div class="panel-body">
+			detail
 		</div>
 	</div>
 </div>

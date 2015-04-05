@@ -26,7 +26,7 @@ angular.module('lolqueen')
                 .then(function(resource){
                   match.data = resource;
                 });
-
+                
               return match;
             });
 
