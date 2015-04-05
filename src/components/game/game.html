@@ -6,7 +6,6 @@
 			<span>{{queueType}} - {{gameLength}}<span>
 		</div>
 		<div class="panel-body">
-
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="spells clearfix">
@@ -35,6 +34,15 @@
 				</div>
 			</div>
 		</div>
-		
+		<div class="panel-body">
+			<a href="#" class="btn btn-default btn-block" ng-click="toggleDetails()">
+				<span ng-if="details">
+					Less Details
+				</span>
+				<span ng-if="!details">
+					More Details
+				</span>
+			</a>
+		</div>
 	</div>
 </div>

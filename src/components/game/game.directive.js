@@ -61,6 +61,19 @@ function lqGame(Champion, SummonerSpell){
 
       scope.trinket = player.stats.item6;
 
+      scope.toggleDetails = function(){
+        if (scope.details) {
+          scope.details = false;
+
+          //show info
+        } else {
+          scope.details = true;
+        }
+
+      }
+
+      scope.details = false;
+
       console.log(scope);
     }
   }
