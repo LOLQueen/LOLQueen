@@ -3,9 +3,9 @@
 angular.module('lolqueen')
   .directive('lqGame', lqGame);
 
-lqGame.$inject = ['Champion', 'SummonerSpell'];
+lqGame.$inject = ['Champion', 'SummonerSpell', 'Match'];
 
-function lqGame(Champion, SummonerSpell){
+function lqGame(Champion, SummonerSpell, Match){
   return {
     templateUrl: 'components/game/game.html',
     scope: {
@@ -13,34 +13,65 @@ function lqGame(Champion, SummonerSpell){
     },
     link: function(scope, element, attr) {
       var game = scope.game;
-      var player = game.participants[0];
-      scope.won = player.stats.winner;
-      scope.gameLength = game.matchDuration;
-      scope.playedAgo = (Date.now() - game.matchCreation) / (1000) ;
-      scope.queueType = game.queueType;
-      scope.summonerSpells = [{ id: player.spell1Id } , {id : player.spell2Id} ];
+      var stats = game.stats;
+
+      var id = game.gameId;
+
+      Match.findOne({matchId: id})
+      .$promise
+      .then(function(resource){
+
+        var data = resource;
+
+        //console.log(data);
+
+        scope.participants = data.participants.map(function(player){
+            var id = player.participantId;
+
+            data.participantIdentities.forEach(function(summoner){
+              if(summoner.participantId == id){
+                player.summonerInfo = summoner.player;
+              }              
+            });
+
+            console.log(player);
+          });
+
+        return resource;
+
+      });
+
+      scope.won = stats.win;
+      scope.gameLength = stats.timePlayed;
+      scope.playedAgo = (Date.now() - game.createDate) / (1000) ;
+      scope.queueType = game.subType;
+      scope.summonerSpells = [{ id: game.spell1 } , {id : game.spell2} ];
       scope.kda = {
-        kills: player.stats.kills, 
-        deaths: player.stats.deaths, 
-        assists: player.stats.assists
+        kills: stats.championsKilled, 
+        deaths: stats.numDeaths,
+        assists: stats.assists
       };
-      scope.goldEarned = player.stats.goldEarned;
+      scope.goldEarned = stats.goldEarned;
       
       scope.items = [
-        player.stats.item0,
-        player.stats.item1,
-        player.stats.item2,
-        player.stats.item3,
-        player.stats.item4,
-        player.stats.item5
+        stats.item0,
+        stats.item1,
+        stats.item2,
+        stats.item3,
+        stats.item4,
+        stats.item5
       ];
 
+      scope.items = scope.items.filter(function(item){ return item; });
+
+      scope.trinket = stats.item6;
+
       scope.champion = {
-        id: player.championId,
-        level: player.stats.champLevel
+        id: game.championId,
+        level: stats.level
       };
 
-      scope.items = scope.items.filter(function(item){ return item; });
+      scope.ipEarned = game.ipEarned;
 
       // get chamption name from api
       Champion.findOne({championId: scope.champion.id})
@@ -57,9 +88,7 @@ function lqGame(Champion, SummonerSpell){
             spell.name = resource.name;
             spell.description = resource.description;
           });
-      });
-
-      scope.trinket = player.stats.item6;
+      });      
 
       scope.toggleDetails = function(){
         if (scope.details) {
@@ -74,7 +103,7 @@ function lqGame(Champion, SummonerSpell){
 
       scope.details = false;
 
-      console.log(scope);
+      //console.log(scope);
     }
   }
 }
