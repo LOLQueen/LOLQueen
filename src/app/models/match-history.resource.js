@@ -7,7 +7,7 @@ angular.module('lolqueen')
   .factory('MatchHistory', ['$resource', 'Match', function ($resource, Match) {
     // Public API here
     return $resource(
-      'http://localhost:9000/api/lol/:region/v2.2/matchhistory/:summonerId', 
+      'http://localhost:9000/api/lol/:region/v1.3/game/by-summoner/:summonerId/recent', 
       {
         region: 'na'
       }, 
@@ -17,21 +17,7 @@ angular.module('lolqueen')
           isArray: true, 
           responseType: 'json',
           transformResponse: function(data){
-            var matches = data.matches;
-
-            matches = matches.map(function(match){
-              var id = match.matchId;
-
-              Match.findOne({matchId: id})
-                .$promise
-                .then(function(resource){
-                  match.data = resource;
-                });
-
-              return match;
-
-            });
-
+            var matches = data.games;
             return matches;          
           }
         }
