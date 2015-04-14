@@ -1,9 +1,12 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="container">
-
-	<h1> {{summonerName}} </h1>
-
+	
+	<div class="summonerInfo">
+		<img src="http://localhost:9000/assets/dragon/img/profileicon/{{profileIcon}}.png" class="profileIcon thumbnail" alt="profileIcon">
+		<span class="label label-default">{{summonerLevel}}</span>
+		<h1 class="summonerName"> {{summonerName}}</h1> 
+	</div>
   <ul class="list-unstyled">
     <li ng-repeat="game in recentMatches">
     	<lq-game game="game"></lq-game>

@@ -13,6 +13,35 @@
   }
 }
 
+$profileIcon-size: 10rem;
+
+.summonerInfo{
+	height: $profileIcon-size + 2rem;
+
+	.profileIcon {
+	float: left;
+	height: auto;
+	max-width: $profileIcon-size;
+	padding: 0.25rem;
+	}
+
+	.summonerName {
+	float: left;
+	position: relative;
+	padding: 0.5rem;
+	}
+
+	.label{
+		display: block;
+		background-color: #008CBA;
+		color: #fff;
+		position: absolute;
+		margin-top: 1rem;
+		margin-left: 1rem;
+		padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+	}
+}
+
 .nav, .pagination, .carousel, .panel-title a, a { cursor: pointer; }
 // injector
 // endinjector

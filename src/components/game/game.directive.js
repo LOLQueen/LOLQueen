@@ -34,7 +34,7 @@ function lqGame(Champion, SummonerSpell, Match){
               }              
             });
 
-            console.log(player);
+            //console.log(player);
           });
 
         return resource;

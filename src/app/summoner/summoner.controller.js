@@ -9,12 +9,14 @@ angular.module('lolqueen')
   	'Match',
   	function ($scope, $stateParams, Summoner, MatchHistory, Match) {
 
-  	$scope.summonerName = $stateParams.summonerName;
+  	$scope.name = $stateParams.summonerName;
 
-  	Summoner.findOne({summonerName: $scope.summonerName}).$promise
+  	Summoner.findOne({summonerName: $scope.name}).$promise
   		.then(function(summoner) {
   			$scope.summoner = summoner;
   			$scope.summonerName = summoner.name;
+        $scope.profileIcon = summoner.profileIconId;
+        $scope.summonerLevel = summoner.summonerLevel;
   			return MatchHistory.find({summonerId: summoner.id}).$promise;
   		})
   		.then(function(recentMatches){
@@ -23,7 +25,7 @@ angular.module('lolqueen')
         // data in the game directive while the promise thingy was going on
         // Instead now we read the match Info the directive and abstract info there
         // Still keeping the comment incase we need to revert in the near future
-        
+
 /*  			$scope.recentMatches = recentMatches.map(function(match){
               var id = match.gameId;
 
