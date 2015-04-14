@@ -7,10 +7,11 @@
 		<span class="label label-default">{{summonerLevel}}</span>
 		<h1 class="summonerName"> {{summonerName}}</h1> 
 	</div>
-  <ul class="list-unstyled">
-    <li ng-repeat="game in recentMatches">
-    	<lq-game game="game" summoner="summoner"></lq-game>
-    </li>
-  </ul>
+	
+	<ul class="list-unstyled">
+		<li ng-repeat="game in recentMatches">
+			<lq-game game="game" summoner="summoner"></lq-game>
+		</li>
+	</ul>
 
 </div>
