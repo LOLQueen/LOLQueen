@@ -39,7 +39,7 @@ angular.module('lolqueen')
             });*/
 
         $scope.recentMatches = recentMatches;
-        console.log(recentMatches);
+        console.log(recentMatches[0]);
   		})
   		.catch(function(error){
   			console.log(error);

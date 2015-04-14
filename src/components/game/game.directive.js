@@ -9,10 +9,12 @@ function lqGame(Champion, SummonerSpell, Match, $filter){
   return {
     templateUrl: 'components/game/game.html',
     scope: {
-      game: '='
+      game: '=',
+      summoner: '='
     },
     link: function(scope, element, attr) {
       var game = scope.game;
+      var summoner = scope.summoner;
       var stats = game.stats;
 
       var id = game.gameId;
@@ -23,41 +25,50 @@ function lqGame(Champion, SummonerSpell, Match, $filter){
 
         var data = resource;
 
+        if(id == '1794640277'){
+          console.log(resource);          
+        }
+
         return data.participants.map(function(player){
-            var id = player.participantId;
+            var champId = player.championId;
+            var teamId = player.teamId;
 
-/*            data.participantIdentities.forEach(function(summoner){
-              if(summoner.participantId == id){
-                player.summonerInfo = summoner.player;
+            if(champId == game.championId){
+              player.summonerId = summoner.id;
+              player.summonerName = summoner.name;              
+            }
+
+            game.fellowPlayers.forEach(function(summoner){
+              if(summoner.championId == champId && summoner.teamId == teamId){
+                player.summonerId = summoner.summonerId;
               }              
-            });*/
-
-            player.summonerInfo = $filter('filter')(data.participantIdentities, function(summoner){
-              if(summoner.participantId == id){
-                return summoner.player;
-              }                 
             });
-
-            console.log(player);
+            
             return player;
           });
 
       })
       .then(function(participants){
 
+        //console.log(participants);
+
           scope.otherPlayers = participants.map(function(participant){
             var stats = participant.stats;
             var player = {
               championId: participant.championId,
               spells: [{ id: participant.spell1Id } , {id : participant.spell1Id} ],
-              profileIcon: participant.summonerInfo[0].player.profileIcon,
-              summonerName: participant.summonerInfo[0].player.summonerName,
+              summonerName: participant.summonerId,
               teamId: participant.teamId,
               role: participant.timeline.lane,
               kills: stats.kills,
               deaths: stats.deaths,
               assists: stats.assists,
               champLevel: stats.champLevel,
+              creeps: {
+                ownJungle: stats.neutralMinionsKilledTeamJungle,
+                enemyJungle: stats.neutralMinionsKilledEnemyJungle,
+                minions: stats.minionsKilled
+              },
               goldEarned: stats.goldEarned,
               items: [
                 stats.item0,
@@ -84,7 +95,6 @@ function lqGame(Champion, SummonerSpell, Match, $filter){
       scope.gameLength = stats.timePlayed;
       scope.playedAgo = (Date.now() - game.createDate) / (1000) ;
       scope.queueType = game.subType;
-      scope.fellowPlayers = game.fellowPlayers;
       scope.summonerSpells = [{ id: game.spell1 } , {id : game.spell2} ];
       scope.kda = {
         kills: stats.championsKilled, 
