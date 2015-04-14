@@ -73,10 +73,20 @@
 		cursor: pointer;
 	}
 
+	.item-more-details {
+		@include image-icon($item-size - 2rem);
+		cursor: pointer;
+	}	
+
 	.champion {
 		@include image-icon($champion-size);
 		cursor: pointer;
 	}
+
+	.champion-more-details {
+		@include image-icon($champion-size - 5rem);
+		cursor: pointer;
+	}	
 
 	.trinket {
 		@include image-icon($trinket-size);
@@ -86,6 +96,15 @@
 	.summoner-spell {
 		@include image-icon($summoner-spell-size);
 		cursor: pointer;
+	}
+
+	.summoner-spell-more-details {
+		@include image-icon($summoner-spell-size - 1.5rem);
+		cursor: pointer;
+	}
+
+	th, tr{
+		text-align: center;
 	}
 
 }

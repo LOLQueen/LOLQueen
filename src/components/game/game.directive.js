@@ -43,7 +43,7 @@ function lqGame(Champion, SummonerSpell, Match, $filter){
                 player.summonerId = summoner.summonerId;
               }              
             });
-            
+
             return player;
           });
 
@@ -55,8 +55,8 @@ function lqGame(Champion, SummonerSpell, Match, $filter){
           scope.otherPlayers = participants.map(function(participant){
             var stats = participant.stats;
             var player = {
-              championId: participant.championId,
-              spells: [{ id: participant.spell1Id } , {id : participant.spell1Id} ],
+              champion: {id: participant.championId},
+              summonerSpells: [{ id: participant.spell1Id } , {id : participant.spell2Id} ],
               summonerName: participant.summonerId,
               teamId: participant.teamId,
               role: participant.timeline.lane,
@@ -84,6 +84,25 @@ function lqGame(Champion, SummonerSpell, Match, $filter){
               wardsKilled: stats.wardsKilled,
               winner: stats.winner
             }
+
+            // get chamption name from api
+            Champion.findOne({championId: player.champion.id})
+              .$promise
+              .then(function(resource){
+                player.champion.name = resource.name;
+                player.champion.key = resource.key;
+              });
+
+            // get summoner spells
+            player.summonerSpells.forEach(function(spell){
+              SummonerSpell.findOne({spellId: spell.id})
+                .$promise
+                .then(function(resource){
+                  spell.name = resource.name;
+                  spell.key = resource.key;
+                  spell.description = resource.description;
+                });
+            });  
 
             //console.log(player);
             return player;
