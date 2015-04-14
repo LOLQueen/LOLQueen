@@ -9,11 +9,11 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="spells clearfix">
-						<img ng-repeat="spell in summonerSpells" src="http://localhost:9000/assets/dragon/img/spell/{{'Summoner' + spell.name}}.png" alt="{{spell.name}}" class="summoner-spell">
+						<img ng-repeat="spell in summonerSpells" src="http://localhost:9000/assets/dragon/img/spell/{{spell.key}}.png" alt="{{spell.name}}" class="summoner-spell">
 						
 					</div>	
 					<figure>
-						<img src="http://localhost:9000/assets/dragon/img/champion/{{champion.name}}.png" class="champion" alt="...">
+						<img src="http://localhost:9000/assets/dragon/img/champion/{{champion.key}}.png" class="champion" alt="...">
 						<figcaption>
 							<span>{{champion.level}}</span> - 
 							<span>{{champion.name}}</span>

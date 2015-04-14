@@ -78,6 +78,7 @@ function lqGame(Champion, SummonerSpell, Match){
         .$promise
         .then(function(resource){
           scope.champion.name = resource.name;
+          scope.champion.key = resource.key;
         });
 
       // get summoner spells
@@ -86,6 +87,7 @@ function lqGame(Champion, SummonerSpell, Match){
           .$promise
           .then(function(resource){
             spell.name = resource.name;
+            spell.key = resource.key;
             spell.description = resource.description;
           });
       });      
