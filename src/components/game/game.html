@@ -35,7 +35,7 @@
 			</div>
 		</div>
 		<div class="panel-body">
-			<a href="#" class="btn btn-default btn-block" ng-click="toggleDetails()">
+			<a href="" class="btn btn-default btn-block" ng-click="toggleDetails()">
 				<span ng-if="details">
 					Less Details
 				</span>
@@ -43,6 +43,37 @@
 					More Details
 				</span>
 			</a>
+			<div class="participants" ng-if="details">
+				<table class="table table-striped table-hover ">
+				  <thead>
+				    <tr>
+				      <th></th>
+				      <th>Summoner</th>
+				      <th>Sums</th>
+				      <th>KDA</th>
+				      <th>Items</th>
+				      <th>Gold</th>
+				      <th>CS</th>
+				      <th>Wards</th>
+				      <th>DamageDealth</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr class="info" ng-repeat="player in otherPlayers track by $index">
+				      <td>{{player.champLevel}}</td>
+				      <td>{{player.summonerName}}</td>
+				      <td>Sums</td>
+				      <td>{{player.kills}}/{{player.deaths}}/{{player.assists}}</td>
+				      <td>Items</td>
+				      <td>{{player.goldEarned}}</td>
+				      <td>still need to add this on the scope</td>
+				      <td>{{player.wardsPlaced}} / {{player.wardsKilled}}</td>
+				      <td>{{player.damageDealt}}</td>
+				    </tr>
+				  </tbody>
+				</table> 				
+			</div>
+
 		</div>
 	</div>
 </div>

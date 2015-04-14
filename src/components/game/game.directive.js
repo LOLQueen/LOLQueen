@@ -3,9 +3,9 @@
 angular.module('lolqueen')
   .directive('lqGame', lqGame);
 
-lqGame.$inject = ['Champion', 'SummonerSpell', 'Match'];
+lqGame.$inject = ['Champion', 'SummonerSpell', 'Match', '$filter'];
 
-function lqGame(Champion, SummonerSpell, Match){
+function lqGame(Champion, SummonerSpell, Match, $filter){
   return {
     templateUrl: 'components/game/game.html',
     scope: {
@@ -23,21 +23,60 @@ function lqGame(Champion, SummonerSpell, Match){
 
         var data = resource;
 
-        //console.log(data);
-
-        scope.participants = data.participants.map(function(player){
+        return data.participants.map(function(player){
             var id = player.participantId;
 
-            data.participantIdentities.forEach(function(summoner){
+/*            data.participantIdentities.forEach(function(summoner){
               if(summoner.participantId == id){
                 player.summonerInfo = summoner.player;
               }              
+            });*/
+
+            player.summonerInfo = $filter('filter')(data.participantIdentities, function(summoner){
+              if(summoner.participantId == id){
+                return summoner.player;
+              }                 
             });
 
-            //console.log(player);
+            console.log(player);
+            return player;
           });
 
-        return resource;
+      })
+      .then(function(participants){
+
+          scope.otherPlayers = participants.map(function(participant){
+            var stats = participant.stats;
+            var player = {
+              championId: participant.championId,
+              spells: [{ id: participant.spell1Id } , {id : participant.spell1Id} ],
+              profileIcon: participant.summonerInfo[0].player.profileIcon,
+              summonerName: participant.summonerInfo[0].player.summonerName,
+              teamId: participant.teamId,
+              role: participant.timeline.lane,
+              kills: stats.kills,
+              deaths: stats.deaths,
+              assists: stats.assists,
+              champLevel: stats.champLevel,
+              goldEarned: stats.goldEarned,
+              items: [
+                stats.item0,
+                stats.item1,
+                stats.item2,
+                stats.item3,
+                stats.item4,
+                stats.item5
+              ],
+              trinket: stats.item6,
+              damageDealt: stats.totalDamageDealtToChampions,
+              wardsPlaced: stats.wardsPlaced,
+              wardsKilled: stats.wardsKilled,
+              winner: stats.winner
+            }
+
+            //console.log(player);
+            return player;
+        });
 
       });
 
@@ -45,6 +84,7 @@ function lqGame(Champion, SummonerSpell, Match){
       scope.gameLength = stats.timePlayed;
       scope.playedAgo = (Date.now() - game.createDate) / (1000) ;
       scope.queueType = game.subType;
+      scope.fellowPlayers = game.fellowPlayers;
       scope.summonerSpells = [{ id: game.spell1 } , {id : game.spell2} ];
       scope.kda = {
         kills: stats.championsKilled, 
@@ -62,9 +102,11 @@ function lqGame(Champion, SummonerSpell, Match){
         stats.item5
       ];
 
-      scope.items = scope.items.filter(function(item){ return item; });
+      if(stats.items6 != 0){
+        scope.trinket = stats.item6;
+      }
 
-      scope.trinket = stats.item6;
+      scope.items = scope.items.filter(function(item){ return item; });
 
       scope.champion = {
         id: game.championId,
@@ -100,7 +142,6 @@ function lqGame(Champion, SummonerSpell, Match){
         } else {
           scope.details = true;
         }
-
       }
 
       scope.details = false;
