@@ -1,21 +1,14 @@
-export default class SummonerSpell{
-  constructor ($resource) {
-    // Public API here
-    return $resource(
-      'http://localhost:9000/api/lol/static-data/:region/v1.2/summoner-spell/:spellId', 
-      {
-        region: 'na'
-      }, 
-      {
-        'findOne': { 
-          method:'GET',
-          isArray: false, 
-          responseType: 'json',
-          transformResponse: function(data){
-            return data;        
-          }
-        }
-      });
+const store = new WeakMap();
 
-  }
+export default class SummonerSpell {
+    constructor ($http) {
+        store.set(this, { $http });
+    }
+
+    findOne({ spellId, region = 'na'} = {}) {
+        const { $http } = store.get(this);
+
+        return $http.get(`http://localhost:9000/api/lol/static-data/${region}/v1.2/summoner-spell/${spellId}`)
+                    .then((response) => response.data);
+    }
 }
