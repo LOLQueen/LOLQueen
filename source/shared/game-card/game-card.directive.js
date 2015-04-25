@@ -2,7 +2,7 @@ export default lqGame;
 
 function lqGame(Champion, SummonerSpell, Match, $filter){
   return {
-    templateUrl: 'components/game/game.html',
+    templateUrl: 'source/shared/game-card/game-card.html',
     scope: {
       game: '=',
       summoner: '='

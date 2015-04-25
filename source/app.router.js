@@ -4,13 +4,15 @@ function router($stateProvider, $urlRouterProvider) {
 	$stateProvider
 		.state('landing', {
 			url: '/',
-			templateUrl: 'app/landing/landing.html',
-			controller: 'LandingCtrl'
+			templateUrl: 'source/components/landing/landing.html',
 		})
-		.state('summoner', {
+		.state('app', {
+			url: '/app',
+			templateUrl: 'source/shared/layout/layout.html',
+		})
+		.state('app.summoner', {
 			url: '/summoner/:region/:summonerName',
-			templateUrl: 'app/summoner/summoner.html',
-			controller: 'SummonerCtrl'
+			templateUrl: 'source/components/summoner/summoner.html',
 		});
 
 	$urlRouterProvider.otherwise('/');
