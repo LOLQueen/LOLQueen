@@ -1,22 +1,7 @@
-<div class="container-fluid">
-<!--   <form ng-submit="goto(summoner)">
-    <input type="text" ng-model="summoner.name">
-    <button type="submit">
-      Fetch Summoner!
-    </button>
-  </form> -->
-<div class="col-xs-offset-3 col-xs-6">
-<div class="panel panel-default">
-  <div class="panel-body">
-	  <form ng-submit="goto(summoner)">
-		<div class="form-group">
-		    <label for="summoner-name">Summoner Name Niggas</label>
-		    <input type="text" class="form-control" id="summoner-name" placeholder="Enter your Summoner Name" ng-model="summoner.name">
-		</div>
-	  	<button type="submit" class="btn btn-primary">Fetch Summoner!</button>
-	  </form>
-  </div>
-</div>
-</div>
-
+<div data-template="landing" ng-controller="LandingController as landing">
+    <form ng-submit="landing.goto(summoner)">
+        <label for="summoner-name">Summoner Name Niggas</label>
+        <input type="text" id="summoner-name" placeholder="Enter your Summoner Name" ng-model="summoner.name">
+        <button type="submit">Fetch Summoner!</button>
+    </form>
 </div>

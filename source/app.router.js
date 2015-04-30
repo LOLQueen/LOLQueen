@@ -1,6 +1,7 @@
 export default router;
 
 function router($stateProvider, $urlRouterProvider) {
+
 	$stateProvider
 		.state('landing', {
 			url: '/',
@@ -15,5 +16,6 @@ function router($stateProvider, $urlRouterProvider) {
 			templateUrl: 'source/components/summoner/summoner.html',
 		});
 
-	$urlRouterProvider.otherwise('/');
+
+    $urlRouterProvider.otherwise('/');
 }
