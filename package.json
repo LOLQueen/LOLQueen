@@ -3,7 +3,10 @@
     "directories": {},
     "dependencies": {
       "angular": "npm:angular@^1.4.0-rc.1",
-      "angular-ui-router": "npm:angular-ui-router@^0.2.14"
+      "angular-ui-router": "npm:angular-ui-router@^0.2.14",
+      "bourbon": "npm:bourbon@^4.2.2",
+      "normalize.css": "npm:normalize.css@^3.0.3",
+      "normalize.scss": "npm:normalize.scss@^0.1.0"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.1.11",
@@ -11,5 +14,16 @@
       "core-js": "npm:core-js@^0.8.4"
     }
   },
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "jspm": "^0.15.5",
+    "jspm-server": "0.0.1",
+    "node-sass": "^2.1.1",
+    "nodemon": "^1.3.7"
+  },
+  "scripts": {
+    "start": "npm run watch-sass & npm run watch-js & jspm-server",
+    "watch-sass": "nodemon --quiet --watch ./source --ext scss --exec 'node-sass source/index.scss index.css'",
+    "watch-js": "nodemon --quiet --watch ./source --ext js --exec 'jspm bundle source/app.module'"
+  }
 }
