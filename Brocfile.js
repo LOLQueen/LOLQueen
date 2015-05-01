@@ -34,6 +34,12 @@ var templates               =   angularTemplatesCache(html, {
 
 var compiledCSS             =   sass([styles], 'app.scss', 'styles.css');
 
+/*  moving fonts   */
+var fonts                   =   funnel(bower, {
+                                    srcDir: 'bootstrap-sass/assets/fonts',
+                                    destDir: 'fonts'
+                                });
+
 var vendorJS                =   bowerConcat(bower, { extension: 'js' });
 
-module.exports              =   mergeTrees([compiledJS, public, compiledCSS, vendorJS, templates]);
+module.exports              =   mergeTrees([compiledJS, public, compiledCSS, vendorJS, templates, fonts]);
