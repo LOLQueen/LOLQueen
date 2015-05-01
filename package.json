@@ -5,7 +5,7 @@
   "main": "source/app.module.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "broccoli serve",
+    "start": "nodemon --watch Brocfile.js --quiet --exec 'broccoli serve'",
     "build": "rm -rf dist && broccoli build dist",
     "clean": "rm -rf tmp dist"
   },
@@ -21,15 +21,16 @@
   "homepage": "https://github.com/LOLQueen/LOLQueen",
   "devDependencies": {
     "broccoli": "^0.16.2",
+    "broccoli-angular-templates-cache": "ntreeinc/broccoli-angular-templates-cache",
     "broccoli-babel-transpiler": "^5.0.0",
+    "broccoli-bower-concat": "ntreeinc/broccoli-bower-concat",
     "broccoli-cli": "^1.0.0",
+    "broccoli-fast-browserify": "ntreeinc/broccoli-fast-browserify",
     "broccoli-funnel": "^0.2.3",
+    "broccoli-jshint": "ntreeinc/broccoli-jshint",
     "broccoli-merge-trees": "^0.2.1",
     "broccoli-sass": "^0.6.5",
-    "broccoli-bower-concat": "ntreeinc/broccoli-bower-concat",
-    "broccoli-fast-browserify": "ntreeinc/broccoli-fast-browserify",
-    "broccoli-angular-templates-cache": "ntreeinc/broccoli-angular-templates-cache",
-    "broccoli-jshint": "ntreeinc/broccoli-jshint"
+    "nodemon": "^1.3.7"
   },
   "dependencies": {
     "babelify": "^6.0.2",
