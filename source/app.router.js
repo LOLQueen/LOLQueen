@@ -5,15 +5,15 @@ function router($stateProvider, $urlRouterProvider) {
 	$stateProvider
 		.state('landing', {
 			url: '/',
-			templateUrl: 'source/components/landing/landing.html',
+			templateUrl: 'components/landing/landing.html',
 		})
 		.state('app', {
 			url: '/app',
-			templateUrl: 'source/shared/layout/layout.html',
+			templateUrl: 'shared/layout/layout.html',
 		})
 		.state('app.summoner', {
 			url: '/summoner/:region/:summonerName',
-			templateUrl: 'source/components/summoner/summoner.html',
+			templateUrl: 'components/summoner/summoner.html',
 		});
 
 
