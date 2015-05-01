@@ -33,6 +33,7 @@ var templates               =   angularTemplatesCache(html, {
                                 });
 
 var compiledCSS             =   sass([styles], 'app.scss', 'styles.css');
+
 var vendorJS                =   bowerConcat(bower, { extension: 'js' });
 
 module.exports              =   mergeTrees([compiledJS, public, compiledCSS, vendorJS, templates]);
