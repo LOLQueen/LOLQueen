@@ -1,4 +1,3 @@
-import angular from 'angular';
 import controller from './landing.controller';
 
 export default angular

@@ -1,4 +1,3 @@
-import angular from 'angular';
 import champion from './champion.resource';
 import match from './match.resource';
 import matchHistory from './match-history.resource';

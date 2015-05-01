@@ -1,4 +1,3 @@
-import angular from 'angular';
 import controller  from './summoner.controller';
 
 export default angular

@@ -1,12 +1,11 @@
-import angular from 'angular';
-import uiRouter from 'angular-ui-router'; 
-
 import components from './components/components.module';
 import router from './app.router';
 
+const uiRouter = { name: 'ui.router' };
+
 export default angular.
     module('app', [
-        uiRouter,
+        uiRouter.name,
         components.name
     ])
     .config(router);

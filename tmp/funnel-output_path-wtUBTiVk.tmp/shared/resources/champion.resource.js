@@ -1,0 +1,1 @@
+/home/ramanpreet/workspace/angular/lolqueen/source/shared/resources/champion.resource.js
