@@ -1,10 +1,13 @@
+var path                    =   require('path');
+
 var babelTranspiler         =   require('broccoli-babel-transpiler'),
     sass                    =   require('broccoli-sass'),
     mergeTrees              =   require('broccoli-merge-trees'),
     funnel                  =   require('broccoli-funnel'),
     bowerConcat             =   require('broccoli-bower-concat'),
     fastBrowserify          =   require('broccoli-fast-browserify'),
-    angularTemplatesCache   =   require('broccoli-angular-templates-cache');
+    angularTemplatesCache   =   require('broccoli-angular-templates-cache'),
+    jshint                  =   require('broccoli-jshint');
 
 var source                  =   'source';
 var public                  =   'public';
@@ -14,7 +17,15 @@ var styles                  =   funnel(source, { include: ['**/*.scss'] });
 var application             =   funnel(source, { include: ['**/*.js'] });
 var html                    =   funnel(source, { include: ['**/*.html'] });
 
-/* browserify stuff */
+/*  jshint  */
+var jshintTree              =   jshint(application, {
+                                    jshintrcPath: path.join(__dirname, '.jshintrc')
+                                });
+
+/*  kill all files  */
+    jshintTree              =   funnel(jshintTree, { exclude: ['**/*'] });
+
+/*  browserify stuff */
 var transforms              =   [ {tr:'babelify'}, {tr:'browserify-ngannotate'} ];
 var bundles                 =   { 
                                     'index.js': { 
@@ -42,4 +53,4 @@ var fonts                   =   funnel(bower, {
 
 var vendorJS                =   bowerConcat(bower, { extension: 'js' });
 
-module.exports              =   mergeTrees([compiledJS, public, compiledCSS, vendorJS, templates, fonts]);
+module.exports              =   mergeTrees([compiledJS, public, compiledCSS, vendorJS, templates, fonts, jshintTree]);

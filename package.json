@@ -28,7 +28,8 @@
     "broccoli-sass": "^0.6.5",
     "broccoli-bower-concat": "ntreeinc/broccoli-bower-concat",
     "broccoli-fast-browserify": "ntreeinc/broccoli-fast-browserify",
-    "broccoli-angular-templates-cache": "ntreeinc/broccoli-angular-templates-cache"
+    "broccoli-angular-templates-cache": "ntreeinc/broccoli-angular-templates-cache",
+    "broccoli-jshint": "ntreeinc/broccoli-jshint"
   },
   "dependencies": {
     "babelify": "^6.0.2",
