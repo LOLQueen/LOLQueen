@@ -13,6 +13,8 @@ var source                  =   'source';
 var public                  =   'public';
 var bower                   =   'bower_components';
 
+
+/*  just some constants */
 var styles                  =   funnel(source, { include: ['**/*.scss'] });
 var application             =   funnel(source, { include: ['**/*.js'] });
 var html                    =   funnel(source, { include: ['**/*.html'] });
@@ -22,7 +24,7 @@ var jshintTree              =   jshint(application, {
                                     jshintrcPath: path.join(__dirname, '.jshintrc')
                                 });
 
-/*  kill all files  */
+/*  kill all jshint tree files  */
     jshintTree              =   funnel(jshintTree, { exclude: ['**/*'] });
 
 /*  browserify stuff */
