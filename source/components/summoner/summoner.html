@@ -1,6 +1,6 @@
 <div data-template="summoner" ng-controller="SummonerController as summoner">
     <div class="summoner-info">
-        <img ng-src="http://localhost:9000/assets/dragon/img/profileicon/{{summoner.profileIconId}}.png" alt="profileIcon">
+        <ddragon-img type="profile-icon" name="{{summoner.profileIconId}}">
         <span class="label label-default">{{summoner.summonerLevel}}</span>
         <h1 class="summoner-name"> {{summoner.name}}</h1> 
     </div>
