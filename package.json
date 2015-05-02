@@ -5,7 +5,7 @@
   "main": "source/app.module.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "live-reload ./source ./public Brocfile.js port=35729 & nodemon --watch Brocfile.js --quiet --exec 'broccoli serve'",
+    "start": "live-reload ./source ./public Brocfile.js --port=35729 & nodemon --watch Brocfile.js --quiet --exec 'broccoli serve'",
     "build": "rm -rf dist && broccoli build dist",
     "clean": "rm -rf tmp dist"
   },
