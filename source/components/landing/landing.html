@@ -1,7 +1,9 @@
 <div data-template="landing" ng-controller="LandingController as landing">
-    <form ng-submit="landing.goto(summoner)">
-        <label for="summoner-name">Summoner Name Niggas</label>
-        <input type="text" id="summoner-name" placeholder="Enter your Summoner Name" ng-model="summoner.name">
-        <button type="submit">Fetch Summoner!</button>
+    <form ng-submit="landing.goto(summoner)" class="lolqueen-form">
+        <div class="form-group">
+            <label for="summoner-name" class="sr-only">Summoner Name Niggas</label>
+            <input type="text" class="form-control" id="summoner-name" placeholder="Enter your Summoner Name" ng-model="summoner.name">  
+        </div>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Fetch Summoner!</button>
     </form>
 </div>

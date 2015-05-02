@@ -1,0 +1,14 @@
+[data-template="landing"] {
+
+    @include display(flex);
+    @include justify-content(center);
+    @include flex-direction(row);
+    @include align-items(center);
+    @include size(100vw 100vh);
+    
+    form {
+        min-width: 35rem;
+        width: 33%;
+    }
+
+}
