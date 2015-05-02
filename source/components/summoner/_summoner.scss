@@ -2,7 +2,7 @@
 
     // just some filler background until we get an image
     @include linear-gradient(white, darken(white, 2.5%));
-    box-shadow: 0 0 1rem darken(white, 5%);
+    box-shadow: 0 0 5rem darken(white, 5%);
 
     // variables
     $padding: 4rem;
@@ -12,7 +12,7 @@
     .summoner-header {
         @include display(flex);
         @include align-items(center);
-        
+
         min-height: modular-scale(2, $profile-picture-height);
         @include padding(modular-scale(-1, $padding) $padding);
     
