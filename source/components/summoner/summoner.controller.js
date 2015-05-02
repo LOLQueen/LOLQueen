@@ -5,8 +5,8 @@ export default class SummonerController {
             .findOne({ name: $stateParams.summonerName})
             .then((summoner) => summoner.populate('match history'))
             .then((summoner) => {
-                self.summoner = summoner;
-            })
+                Object.assign(self, summoner);
+            });
 
     }
 }

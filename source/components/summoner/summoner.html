@@ -1,13 +1,12 @@
-
 <div data-template="summoner" ng-controller="SummonerController as summoner">
     <div class="summoner-info">
-        <img src="http://localhost:9000/assets/dragon/img/profileicon/{{profileIcon}}.png" alt="profileIcon">
-        <span>{{summonerLevel}}</span>
-        <h1 class="summoner-name"> {{summonerName}}</h1> 
+        <img ng-src="http://localhost:9000/assets/dragon/img/profileicon/{{summoner.profileIconId}}.png" alt="profileIcon">
+        <span class="label label-default">{{summoner.summonerLevel}}</span>
+        <h1 class="summoner-name"> {{summoner.name}}</h1> 
     </div>
 
-    <ul>
-        <li ng-repeat="game in summoner.recentMatches">
+    <ul class="list-unstyled">
+        <li ng-repeat="game in summoner.matchHistory">
             <lq-game game="game" summoner="summoner"></lq-game>
         </li>
     </ul>
