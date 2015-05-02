@@ -1,22 +1,27 @@
 [data-template="summoner"] {
-    background-color: gray;
-    $profile-height: 10rem;
-    $standard-padding: 1rem;
-    $summoner-name-size: 4rem;
+
+    // just some filler background until we get an image
+    @include linear-gradient(white, darken(white, 2.5%));
+    box-shadow: 0 0 1rem darken(white, 5%);
+
+    // variables
+    $padding: 4rem;
+    $summoner-name-font-size: 4rem;
+    $profile-picture-height: $summoner-name-font-size * 2;
 
     .summoner-header {
-        min-height: ($profile-height * 1.25);
-        @include padding(modular-scale(1, $standard-padding));
         @include display(flex);
-        @include justify-content(flex-start);
         @include align-items(center);
+        
+        min-height: modular-scale(2, $profile-picture-height);
+        @include padding(modular-scale(-1, $padding) $padding);
     
         ddragon-img {
             cursor: pointer;
             
             // this is not right, we shouldn't have to assume there's an image inside ddragon-img
             img {
-                @include size($profile-height);
+                @include size($profile-picture-height);
             }
         }
     }
@@ -24,16 +29,16 @@
     .summoner-header-body {
         @include display(flex);
         @include flex-direction(column);
-        @include padding(null modular-scale(1, $standard-padding));
+        @include padding(null modular-scale(-1, $padding));
 
         h1 {
-            @include margin( modular-scale(-1, $standard-padding) 0);
-            font-size: $summoner-name-size;
+            @include margin(0 0 1rem 0);
+            font-size: $summoner-name-font-size;
         }
 
         h2 {
             @include margin(0);
-            font-size: modular-scale(-2, $summoner-name-size);
+            font-size: modular-scale(-2, $summoner-name-font-size);
         }
     }
 
