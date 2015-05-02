@@ -6,7 +6,6 @@ export default class SummonerController {
             .then((summoner) => summoner.populate('match history'))
             .then((summoner) => {
                 Object.assign(self, summoner);
-                console.log(self);
             });
     }
 }
