@@ -1,0 +1,40 @@
+[data-template="summoner"] {
+    background-color: gray;
+    $profile-height: 10rem;
+    $standard-padding: 1rem;
+    $summoner-name-size: 4rem;
+
+    .summoner-header {
+        min-height: ($profile-height * 1.25);
+        @include padding(modular-scale(1, $standard-padding));
+        @include display(flex);
+        @include justify-content(flex-start);
+        @include align-items(center);
+    
+        ddragon-img {
+            cursor: pointer;
+            
+            // this is not right, we shouldn't have to assume there's an image inside ddragon-img
+            img {
+                @include size($profile-height);
+            }
+        }
+    }
+
+    .summoner-header-body {
+        @include display(flex);
+        @include flex-direction(column);
+        @include padding(null modular-scale(1, $standard-padding));
+
+        h1 {
+            @include margin( modular-scale(-1, $standard-padding) 0);
+            font-size: $summoner-name-size;
+        }
+
+        h2 {
+            @include margin(0);
+            font-size: modular-scale(-2, $summoner-name-size);
+        }
+    }
+
+}

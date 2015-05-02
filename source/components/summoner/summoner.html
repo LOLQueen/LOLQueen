@@ -1,13 +1,14 @@
 <div data-template="summoner" ng-controller="SummonerController as summoner">
-    <div class="summoner-info">
-        <ddragon-img type="profile-icon" name="{{summoner.profileIconId}}">
-        <span class="label label-default">{{summoner.summonerLevel}}</span>
-        <h1 class="summoner-name"> {{summoner.name}}</h1> 
-    </div>
-
-    <ul class="list-unstyled">
+    <header class="summoner-header">
+        <ddragon-img type="profile-icon" name="{{summoner.profileIconId}}"> </ddragon-img>
+        <span class="summoner-header-body">
+            <h1> {{summoner.name}}</h1>
+            <h2> Level: {{summoner.summonerLevel}}</h2> 
+        </span>
+    </header>
+    <!-- <ul class="list-unstyled">
         <li ng-repeat="game in summoner.matchHistory">
             <lq-game game="game" summoner="summoner"></lq-game>
         </li>
-    </ul>
+    </ul> -->
 </div>
