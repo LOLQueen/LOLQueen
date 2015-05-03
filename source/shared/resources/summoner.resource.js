@@ -2,8 +2,8 @@ const store = new WeakMap();
 
 export default class Summoner {
     
-    constructor ($http, MatchHistory) {
-        store.set(this, { $http, MatchHistory });
+    constructor ($http, RecentGames) {
+        store.set(this, { $http, RecentGames });
     }
 
     findOne({name, region = 'na'} = {}){
@@ -17,14 +17,14 @@ export default class Summoner {
 
 function decorate(summoner) {
     const self = this;
-    const { MatchHistory } = store.get(self);
+    const { RecentGames } = store.get(self);
 
     summoner.populate = function (relation) {
-        if (/match(\s|-)?history/i.test(relation)) {
+        if (/recent(\s|-)?games/i.test(relation)) {
 
-            return MatchHistory.find({summonerId: summoner.id})
-                .then(function (history){
-                    summoner.matchHistory = history;
+            return RecentGames.find({summonerId: summoner.id})
+                .then(function (recentGames){
+                    summoner.recentGames = recentGames;
                     return summoner;
                 });
         }

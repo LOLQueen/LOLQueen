@@ -1,6 +1,6 @@
 const store = new WeakMap();
 
-export default class MatchHistory {
+export default class RecentGames {
 	
 	constructor($http) {
 		store.set(this, { $http });
