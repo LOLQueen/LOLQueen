@@ -7,20 +7,18 @@ game-card {
 
 	cursor: pointer;
 
-}
-
-game-card.won {
-	@include linear-gradient(lighten(green, 45%), lighten(green, 46%));
-
-	&:hover {
-		@include linear-gradient(lighten(green, 41%), lighten(green, 43.5%));
+	@mixin set-background($color) {
+		background-color: lighten($color, 45%);
+		&:hover {
+			background-color: lighten($color, modular-scale(-1, 45%));
+		}
 	}
-}
 
-game-card.lost {
-	@include linear-gradient(lighten(red, 45%), lighten(red, 46%));
+	&.won {
+		@include set-background(green);
+	}
 
-	&:hover {
-		@include linear-gradient(lighten(red, 41%), lighten(red, 43.5%));
+	&.lost {
+		@include set-background(red);
 	}
 }
