@@ -8,7 +8,34 @@ function gameCard(Champion, SummonerSpell, Match, $filter){
             summoner: '='
         },
         link: function(scope, element, attr) {
-            console.log(scope);
+
+            scope.game
+                .getParticipants()
+                .then((participants) => participants.map((participant) => participant.populate('summonerId')))
+                .then(console.log.bind(console));
+            // console.log(scope);
+            // console.log(scope.game);
+            // Match
+            //     .findOne({matchId: scope.game.gameId})
+            //     .then((match) => {
+
+            //         return match.participants.map(attachSummonerId);
+
+            //         function attachSummonerId(participant){
+            //             scope.game.fellowPlayers.forEach((player)=>{
+            //                 if (player.championId === participant.championId && 
+            //                     player.teamId === participant.teamId) {
+
+            //                     // participant.summonerId = player.summonerId;
+            //                 }
+            //             });
+
+            //             console.log('game: ', scope.game)
+            //             console.log('match: ', match);
+
+            //             return participant;
+            //         }
+            // });
 
             // var game = scope.game;
             // var summoner = scope.summoner;

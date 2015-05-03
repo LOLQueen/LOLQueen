@@ -1,15 +1,16 @@
-import champion from './champion.resource';
-import match from './match.resource';
-import RecentGames from './recent-games.resource';
+import Champion from './champion.resource';
+import Match from './match.resource';
 import MatchHistory from './match-history.resource';
-import summonerSpell from './summoner-spell.resource';
-import summoner from './summoner.resource';
+import SummonerSpell from './summoner-spell.resource';
+import Summoner from './summoner/summoner.module';
+import RecentGames from './recent-games/recent-games.module';
 
 export default angular
-	.module('shared.resources', [])
-	.service(champion.name, champion)
-	.service(match.name, match)
-	.service(RecentGames.name, RecentGames)
-	.service(summonerSpell.name, summonerSpell)
-	.service(summoner.name, summoner)
+	.module('shared.resources', [
+        Summoner.name,
+        RecentGames.name
+    ])
+	.service(Champion.name, Champion)
+	.service(Match.name, Match)
+	.service(SummonerSpell.name, SummonerSpell)
     .service(MatchHistory.name, MatchHistory);
