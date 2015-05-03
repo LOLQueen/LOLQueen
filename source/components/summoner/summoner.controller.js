@@ -1,3 +1,5 @@
+'use strict';
+
 export default class SummonerController {
     constructor($stateParams, Summoner) {
         const self = this;

@@ -1,3 +1,5 @@
+'use strict';
+
 export default gameCard;
 
 function gameCard(Champion, SummonerSpell, Match, $filter){

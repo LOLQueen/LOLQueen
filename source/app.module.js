@@ -1,3 +1,5 @@
+'use strict';
+
 import components from './components/components.module';
 import router from './app.router';
 

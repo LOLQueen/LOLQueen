@@ -1,4 +1,5 @@
 'use strict';
+
 import directive from './ddragon-img.directive';
 
 export default angular

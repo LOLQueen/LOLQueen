@@ -1,3 +1,5 @@
+'use strict';
+
 import directive from './game-card.directive';
 
 export default angular

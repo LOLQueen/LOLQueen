@@ -1,3 +1,5 @@
+'use strict';
+
 import controller  from './summoner.controller';
 
 export default angular

@@ -1,3 +1,5 @@
+'use strict';
+
 import Champion from './champion.resource';
 import Match from './match.resource';
 import MatchHistory from './match-history.resource';

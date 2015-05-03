@@ -1,3 +1,5 @@
+'use strict';
+
 export default router;
 
 function router($stateProvider, $urlRouterProvider) {

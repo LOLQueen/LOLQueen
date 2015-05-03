@@ -1,3 +1,5 @@
+'use strict';
+
 const store = new WeakMap();
 
 export default class SummonerSpell {
