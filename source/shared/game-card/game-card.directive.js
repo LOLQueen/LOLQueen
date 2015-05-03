@@ -2,19 +2,26 @@
 
 export default gameCard;
 
-function gameCard(Champion, SummonerSpell, Match, $filter){
+function gameCard() {
     return {
         templateUrl: 'shared/game-card/game-card.html',
         scope: {
             game: '=',
             summoner: '='
         },
-        link: function(scope, element, attr) {
+        link: function(scope) {
 
             scope.game
                 .getParticipants()
-                .then((participants) => participants.map((participant) => participant.populate('summonerId')))
+                .then((participants) => participants.map(
+                    (participant) => (
+                        participant.populate('summonerId'),
+                        participant.populate('champion'),
+                        participant.populate('summonerSpells')
+                    )
+                ))
                 .then(console.log.bind(console));
+
             // console.log(scope);
             // console.log(scope.game);
             // Match
@@ -147,7 +154,7 @@ function gameCard(Champion, SummonerSpell, Match, $filter){
             //     assists: stats.assists
             // };
             // scope.goldEarned = stats.goldEarned;
-            
+
             // scope.items = [
             //     stats.item0,
             //     stats.item1,

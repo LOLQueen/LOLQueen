@@ -8,7 +8,7 @@ export default function transform(store, games){
     const RecentGamesInstance = this;
 
     //  grab match resource from store
-    const { Match } = RecentGamesInstance.getDependencies();
+    const { Match, Champion, SummonerSpell } = RecentGamesInstance.getDependencies();
 
     //  attach the getParticipants method to each game object
     for (let game of games) {
@@ -42,7 +42,31 @@ export default function transform(store, games){
                             }
                         }
                         
-                    } else {
+                    } 
+                    else if (/champion/i.test(relation)) {
+                        participant.champion = {};
+
+                        Champion
+                            .findOne({championId: participant.championId})
+                            .then((champion) => {
+                                angular.extend(participant.champion, champion)
+                            });
+                    }
+
+                    else if (/summoner(-|\s)?spells/i.test(relation)) {
+                        
+                        participant.summonerSpells
+                            .forEach(function(summonerSpell){
+                                SummonerSpell
+                                    .findOne({spellId: summonerSpell.id})
+                                    .then((spell) => {
+                                        angular.extend(summonerSpell, spell)
+                                    });
+                        });
+
+                    }
+
+                    else {
 
                         throw new TypeError('Invalid argument passed to participant#populate.');
                     

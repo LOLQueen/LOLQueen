@@ -6,12 +6,12 @@ const store = new WeakMap();
 
 export default class RecentGames {
     
-    constructor($http, Match) {
-        store.set(this, { $http, Match });
+    constructor($http, Match, Champion, SummonerSpell) {
+        store.set(this, { $http, Match, Champion, SummonerSpell });
     }
 
     find({summonerId, region = 'na'} = {}) {
-        
+
         const { $http } = this.getDependencies();
 
         return $http.get(`http://localhost:9000/api/lol/${region}/v1.3/game/by-summoner/${summonerId}/recent`)
