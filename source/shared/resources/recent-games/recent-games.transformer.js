@@ -1,7 +1,14 @@
-export function transform(store, games){
+'use strict';
+
+import { default as participantTransformer } from './participant.transformer';
+
+export default function transform(store, games){
     
-    // grab match resource from store
-    const { Match } = store.get(this);
+    //  get and instance of RecentGames
+    const RecentGamesInstance = this;
+
+    //  grab match resource from store
+    const { Match } = RecentGamesInstance.getDependencies();
 
     //  attach the getParticipants method to each game object
     for (let game of games) {
@@ -13,8 +20,9 @@ export function transform(store, games){
 
         // find match and 
         return Match
-            .findOne({matchId: game.gameId})
+            .findOne({ matchId: game.gameId })
             .then((match) => match.participants)
+            .then((participants) => participants.map(participantTransformer.bind(RecentGamesInstance, store)))
             .then((participants) => {
 
                 return participants.map((participant) => (
@@ -35,7 +43,9 @@ export function transform(store, games){
                         }
                         
                     } else {
+
                         throw new TypeError('Invalid argument passed to participant#populate.');
+                    
                     }
 
                     return participant;

@@ -1,8 +1,9 @@
 'use strict';
 
-export function transform(store, summoner) {
+export function transform(summoner) {
 
-    const { RecentGames, MatchHistory, $q } = store.get(this);
+    const SummonerInstance = this;
+    const { RecentGames, MatchHistory, $q } = SummonerInstance.getDependencies();
 
     summoner.populate = function (relation) {
         if (/recent(\s|-)?games/i.test(relation)) {
