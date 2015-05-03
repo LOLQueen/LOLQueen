@@ -15,8 +15,12 @@ function ddragonImg(){
             scope.$watch('name', setImageSource);
 
             function setImageSource() {
-                if (scope.type.match(/profile(-| )?icon/i)) {
+                if (scope.type.match(/profile(-|\s)?icon/i)) {
                     scope.src = `${baseUrl}/assets/dragon/img/profileicon/${scope.name}.png`;
+                }
+
+                else if(scope.type.match(/summoner(-|\s)?spell/i)) {
+                    scope.src = `${baseUrl}/assets/dragon/img/spell/${scope.name}.png`
                 }
             }
             

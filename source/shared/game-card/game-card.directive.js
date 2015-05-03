@@ -12,6 +12,7 @@ function gameCard() {
         link: function(scope, element) {
 
             scope.game
+                .populate('summonerSpells')
                 .getParticipants()
                 .then((participants) => participants.map(
                     (participant) => (

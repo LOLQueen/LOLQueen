@@ -11,10 +11,33 @@ export default function transform(store, games){
     const { Match, Champion, SummonerSpell, $injector} = RecentGamesInstance.getDependencies();
 
     //  attach the getParticipants method to each game object
-    for (let game of games) {
+    games.forEach((game) => {
         // console.log(game);
+
+        // normalize the summoner spells
+        game.summonerSpells = [{id: game.spell1}, {id: game.spell2}];
+        delete game.spell1;
+        delete game.spell2;
+
+        // other stuff
         game.getParticipants = getParticipants;
-    }
+        game.populate = populate;
+
+        function populate(relation) {
+            if (/summoner(-|\s)?spell/i.test(relation)) {
+                game.summonerSpells
+                    .forEach((summonerSpell) => {
+                        SummonerSpell
+                            .findOne({spellId: summonerSpell.id})
+                            .then((spell) => {
+                                angular.extend(summonerSpell, spell);
+                            });
+                });
+            }
+
+            return game;
+        }
+    });
 
     function getParticipants() {
         const game = this;
