@@ -1,9 +1,13 @@
 game-card {
 	@include display(flex);
-	@include padding(1rem 1.5rem);
+	@include justify-content(space-between);
+	@include padding(1rem 2rem);
 	@include margin(0.5rem null);
 	@include border-top-radius(0.5rem);
 	@include border-bottom-radius(0.5rem); 
+
+	$summoner-image-size: 6rem;
+	$spell-size: $summoner-image-size / 2;
 
 	cursor: pointer;
 
@@ -21,4 +25,31 @@ game-card {
 	&.lost {
 		@include set-background(red);
 	}
+
+	.item img {
+		@include size(modular-scale(1, $spell-size));	
+	}
+
+	.summoner-spell img {
+		@include size($spell-size);
+	}
+
+	.champion-image img {
+		@include size($summoner-image-size);
+	}
+
+	.left-align {
+		@include display(flex);
+		@include align-items(center);
+	}
+
+	.items {
+		& > ul {
+			@include display(flex);
+			@include flex-direction(row);
+		}
+
+		@include align-self(center);
+	}
+
 }

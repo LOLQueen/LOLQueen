@@ -1,19 +1,19 @@
-<div class="summoner-spells">
-    <ul class="list-unstyled">
+<div class="left-align">
+
+    <ul class="summoner-spells list-unstyled">
         <li ng-repeat="summonerSpell in game.summonerSpells">
-            <ddragon-img type="summoner-spell" name="{{summonerSpell.key}}"></ddragon-img>
+            <ddragon-img class="summoner-spell" type="summoner-spell" name="{{summonerSpell.key}}"></ddragon-img>
         </li>
     </ul>
+
+    <ddragon-img class="champion-image" type="champion" name="{{game.champion.key}}"></ddragon-img>
+
 </div>
 
-<div class="champion-image">
-    <ddragon-img type="champion" name="{{game.champion.key}}"></ddragon-img>
-</div>
-
-<div class="items">
+<div class="right-align items">
     <ul class="list-unstyled">
         <li ng-repeat="item in game.stats.items">
-            <ddragon-img type="item" name="{{item}}"></ddragon-img>
+            <ddragon-img class="item" type="item" name="{{item}}"></ddragon-img>
         </li>
     </ul>
 </div>
