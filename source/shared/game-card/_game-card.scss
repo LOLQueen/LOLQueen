@@ -3,6 +3,11 @@ game-card {
 	@include padding(1rem 0.5rem);
 	@include border-top-radius(0.5rem);
 	@include border-bottom-radius(0.5rem); 
+	@include linear-gradient(darken(white, 1%), darken(white, 2%));
 
-	background-color:lighten(black, 50%);
+	cursor: pointer;
+
+	&:hover {
+		@include linear-gradient(darken(white, 2%), darken(white, 5%));
+	}
 }
