@@ -7,10 +7,13 @@ export default class MatchHistory {
     }
 
     find({summonerId, region = 'na'} = {}) {
-        const { $http } = store.get(this);
+        const { $http } = this.getDependencies();
 
         return $http.get(`http://localhost:9000/api/lol/${region}/v2.2/matchhistory/${summonerId}`)
                     .then((response) => response.data.matches);
     }
 
+    getDependencies() {
+        return store.get(this);
+    }
 }

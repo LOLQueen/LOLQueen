@@ -14,4 +14,8 @@ export default class Match {
         return $http.get(`http://localhost:9000/api/lol/${region}/v2.2/match/${matchId}`)
                     .then((response) => response.data);
     }
+    
+    getDependencies() {
+        return store.get(this);
+    }
 }

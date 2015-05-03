@@ -9,9 +9,13 @@ export default class Champion {
     }
 
     findOne({championId, region = 'na'} = {}) {
-        const { $http } = store.get(this);
+        const { $http } = this.getDependencies();
 
         return $http.get(`http://localhost:9000/api/lol/static-data/${region}/v1.2/champion/${championId}`)
                     .then((response) => response.data);
+    }
+
+    getDependencies() {
+        return store.get(this);
     }
 }

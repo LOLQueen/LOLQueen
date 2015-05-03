@@ -9,11 +9,15 @@ export default class LandingController {
     }
 
     goto(summoner) {
-        const { $state } = store.get(this);
+        const { $state } = this.getDependencies();
 
         $state.go('application.summoner', {
             region: "na", 
             summonerName: summoner.name
         });
+    }
+
+    getDependencies() {
+        return store.get(this);
     }
 }
