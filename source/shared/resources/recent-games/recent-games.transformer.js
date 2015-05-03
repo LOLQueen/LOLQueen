@@ -17,6 +17,14 @@ export default function transform(store, games){
         // normalize the summoner spells
         game.summonerSpells = [{id: game.spell1}, {id: game.spell2}];
         game.champion = {id: game.championId};
+        game.stats.items = [
+            game.stats.item0, game.stats.item1, game.stats.item2, 
+            game.stats.item3, game.stats.item4, game.stats.item5
+        ];
+        
+        // get rid of undefined items;
+        game.stats.items = game.stats.items.filter(Boolean);
+        game.stats.trinket = game.stats.item6;
 
         // other stuff
         game.getParticipants = getParticipants;
