@@ -11,5 +11,9 @@
 </div>
 
 <div class="items">
-    
+    <ul class="list-unstyled">
+        <li ng-repeat="item in game.stats.items">
+            <ddragon-img type="item" name="{{item}}"></ddragon-img>
+        </li>
+    </ul>
 </div>
