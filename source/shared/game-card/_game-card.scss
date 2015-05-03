@@ -1,13 +1,26 @@
 game-card {
 	@include display(flex);
-	@include padding(1rem 0.5rem);
+	@include padding(1rem 1.5rem);
+	@include margin(0.5rem null);
 	@include border-top-radius(0.5rem);
 	@include border-bottom-radius(0.5rem); 
-	@include linear-gradient(darken(white, 1%), darken(white, 2%));
 
 	cursor: pointer;
 
+}
+
+game-card.won {
+	@include linear-gradient(lighten(green, 45%), lighten(green, 46%));
+
 	&:hover {
-		@include linear-gradient(darken(white, 2%), darken(white, 5%));
+		@include linear-gradient(lighten(green, 41%), lighten(green, 43.5%));
+	}
+}
+
+game-card.lost {
+	@include linear-gradient(lighten(red, 45%), lighten(red, 46%));
+
+	&:hover {
+		@include linear-gradient(lighten(red, 41%), lighten(red, 43.5%));
 	}
 }

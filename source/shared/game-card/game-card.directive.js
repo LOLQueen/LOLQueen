@@ -9,7 +9,7 @@ function gameCard() {
             game: '=',
             summoner: '='
         },
-        link: function(scope) {
+        link: function(scope, element) {
 
             scope.game
                 .getParticipants()
@@ -25,6 +25,15 @@ function gameCard() {
                     console.log(scope.game);
                 });
 
+            scope.$watch('game.stats.win', (won) => {
+                if (won) {
+                    element.addClass('won');
+                    element.removeClass('lost');
+                } else {
+                    element.removeClass('won');
+                    element.addClass('lost');
+                }
+            });
             // console.log(scope);
             // console.log(scope.game);
             // Match
