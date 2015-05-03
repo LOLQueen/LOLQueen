@@ -22,6 +22,10 @@ function ddragonImg(){
                 else if(scope.type.match(/summoner(-|\s)?spell/i)) {
                     scope.src = `${baseUrl}/assets/dragon/img/spell/${scope.name}.png`
                 }
+
+                else if(scope.type.match(/champion/i)) {
+                    scope.src = `${baseUrl}/assets/dragon/img/champion/${scope.name}.png`
+                }
             }
             
         }

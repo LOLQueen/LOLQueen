@@ -13,6 +13,7 @@ function gameCard() {
 
             scope.game
                 .populate('summonerSpells')
+                .populate('champion')
                 .getParticipants()
                 .then((participants) => participants.map(
                     (participant) => (

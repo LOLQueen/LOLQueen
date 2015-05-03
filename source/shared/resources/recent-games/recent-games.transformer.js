@@ -16,13 +16,13 @@ export default function transform(store, games){
 
         // normalize the summoner spells
         game.summonerSpells = [{id: game.spell1}, {id: game.spell2}];
-        delete game.spell1;
-        delete game.spell2;
+        game.champion = {id: game.championId};
 
         // other stuff
         game.getParticipants = getParticipants;
         game.populate = populate;
 
+        // some code repetition in here; look to change it?
         function populate(relation) {
             if (/summoner(-|\s)?spell/i.test(relation)) {
                 game.summonerSpells
@@ -33,6 +33,17 @@ export default function transform(store, games){
                                 angular.extend(summonerSpell, spell);
                             });
                 });
+            }
+            else if (/champion/i.test(relation)) {
+                Champion
+                    .findOne({championId: game.championId})
+                    .then((champion) => {
+                        angular.extend(game.champion, champion)
+                    });
+            }
+
+            else {
+                throw new Error('Invalid arguments passed into game#populate.');
             }
 
             return game;
