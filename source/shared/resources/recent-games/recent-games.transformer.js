@@ -8,10 +8,11 @@ export default function transform(store, games){
     const RecentGamesInstance = this;
 
     //  grab match resource from store
-    const { Match, Champion, SummonerSpell } = RecentGamesInstance.getDependencies();
+    const { Match, Champion, SummonerSpell, $injector} = RecentGamesInstance.getDependencies();
 
     //  attach the getParticipants method to each game object
     for (let game of games) {
+        // console.log(game);
         game.getParticipants = getParticipants;
     }
 
@@ -38,7 +39,13 @@ export default function transform(store, games){
                         //  shitty n^2 lookup of summoner name, cause RIOT is on crack
                         for (let player of game.fellowPlayers) {
                             if (player.championId === participant.championId && player.teamId === participant.teamId) {
-                                participant.summonerId = player.summonerId;
+                                if (typeof participant.summoner !== 'object' || ! participant.summoner) {
+                                    participant.summoner = {};
+                                }
+
+                                angular.extend(participant.summoner, {
+                                    id: player.summonerId
+                                });
                             }
                         }
                         
@@ -63,6 +70,23 @@ export default function transform(store, games){
                                         angular.extend(summonerSpell, spell)
                                     });
                         });
+
+                    }
+
+                    else if (/summoner/i.test(relation)) {
+                        if (! participant.summonerId ) {
+                            participant.populate('summonerId');
+                        }
+
+                        //  recent-games relies on summoner
+                        //  circular dependency solution, in essence
+                        const Summoner = $injector.get('Summoner');
+
+                        if (participant.summoner) {
+                            Summoner
+                                .findOne({ id: participant.summoner.id })
+                                .then((summoner) => angular.extend(participant.summoner, summoner));
+                        }
 
                     }
 

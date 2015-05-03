@@ -8,7 +8,6 @@ export default function transform(store, participant) {
     var player = {
         championId: participant.championId,
         summonerSpells: [{ id: participant.spell1Id } , {id : participant.spell2Id} ],
-        summonerName: participant.summonerId,
         teamId: participant.teamId,
         role: participant.timeline.lane,
         kills: stats.kills,
