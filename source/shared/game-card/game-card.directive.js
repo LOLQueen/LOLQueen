@@ -20,7 +20,10 @@ function gameCard() {
                         participant.populate('summonerSpells')
                     )
                 ))
-                .then(console.log.bind(console));
+                .then(function(participants){
+                    scope.game.participants = participants;
+                    console.log(scope.game);
+                });
 
             // console.log(scope);
             // console.log(scope.game);
